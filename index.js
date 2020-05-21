@@ -97,6 +97,8 @@ app.post('/api/persons', (request, response) => {
   response.json(person)
 })
 
+app.use(express.static('build'))
+
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
