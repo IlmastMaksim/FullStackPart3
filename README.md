@@ -1,3 +1,3 @@
 # FullStackPart 3
 
-**https://salty-anchorage-02792.herokuapp.com/api/persons**
+**https://salty-anchorage-02792.herokuapp.com**
