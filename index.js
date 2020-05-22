@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(express.static('build'))
 app.use(express.json())
 
-morgan.token('content', function (req, res) { return JSON.stringify(req.body) })
+morgan.token('content', req => JSON.stringify(req.body))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :content'))
 
 app.use(cors())
@@ -22,7 +22,7 @@ const dateobj = new Date();
 
 const generateId = () => Math.floor(Math.random() * 1000) + 1
 
-let persons = [
+const persons = [
   {
     "name": "Ada Lovelace",
     "number": "39-44-5323523",
@@ -69,9 +69,8 @@ app.get('/api/persons/:id', (request, response) => {
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
-  const id = Number(request.params.id)
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
